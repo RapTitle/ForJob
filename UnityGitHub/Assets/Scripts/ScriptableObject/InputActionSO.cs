@@ -10,8 +10,12 @@ public class InputActionSO : ScriptableObject,InputActions.IGamePlayActions
 {
    public event UnityAction<Vector2> onMove=delegate(Vector2 arg0) {  };
    public event UnityAction onStopMove=delegate {  }; 
+   
+   public event UnityAction onRun=delegate {  }; 
+   public event UnityAction onJump=delegate {  }; 
 
    private InputActions _inputActions;
+   private InputActions.IGamePlayActions _gamePlayActionsImplementation;
 
 
    private void OnEnable()
@@ -52,5 +56,17 @@ public class InputActionSO : ScriptableObject,InputActions.IGamePlayActions
             onMove.Invoke(context.ReadValue<Vector2>());
         if(context.phase==InputActionPhase.Canceled)
             onStopMove.Invoke();
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if(context.phase==InputActionPhase.Performed)
+            onRun.Invoke();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.phase==InputActionPhase.Performed)
+            onJump.Invoke();
     }
 }
