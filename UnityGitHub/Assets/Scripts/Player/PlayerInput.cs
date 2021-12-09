@@ -10,9 +10,11 @@ public class PlayerInput : MonoBehaviour
 
     private CharacterController playerController;
     private Animator anim;
-
+    private Transform gamePlayCamera;
+ 
     private Vector3 currInput;
     private Vector3 currVelocity;
+    private Vector3 currDic;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
@@ -113,6 +115,8 @@ public class PlayerInput : MonoBehaviour
             anim.SetFloat("MoveingSpeed",isRun?moveSpeed/maxSpeed:0);
             
         }
+
+        // currDic = Camera.current.transform.TransformDirection(currInput);
         playerController.Move(currInput*Time.deltaTime*moveSpeed);
         currVelocity = playerController.velocity; 
        
