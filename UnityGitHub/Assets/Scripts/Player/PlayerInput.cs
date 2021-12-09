@@ -10,9 +10,11 @@ public class PlayerInput : MonoBehaviour
 
     private CharacterController playerController;
     private Animator anim;
-    private Transform gamePlayCamera;
- 
-    private Vector3 currInput;
+    [SerializeField] private Transform gamePlayCamera;
+    private Vector3 cameraForward;
+    private Vector3 cameraRight;
+
+    private Vector2 currInput;
     private Vector3 currVelocity;
     private Vector3 currDic;
     [SerializeField] private float maxSpeed;
@@ -23,7 +25,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private bool isMove;
     [SerializeField] private bool isRun;
     [SerializeField] private bool isJump;
-    
+
 
     private void Awake()
     {
@@ -34,7 +36,7 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         // StartCoroutine(PhysicalMotionMoroution());
-         currInput.y = -9.8f;
+        currInput.y = -9.8f;
     }
 
     private void OnEnable()
@@ -43,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         playerInput.onMove += OnEventToMove;
         playerInput.onStopMove += OnEventToStopMove;
         playerInput.onRun += OnEventToRun;
-        
+
     }
 
     private void OnDisable()
@@ -56,19 +58,18 @@ public class PlayerInput : MonoBehaviour
 
     private void OnEventToMove(Vector2 vector2)
     {
-        currInput.x = vector2.x;
-        currInput.z = vector2.y;
+        currInput = vector2;
         isMove = true;
-        anim.SetBool("IsMoveing",true);
+        anim.SetBool("IsMoveing", true);
     }
 
     private void OnEventToStopMove()
     {
         currInput.x = 0;
-        currInput.z = 0;
+        currInput.y = 0;
         moveSpeed = 0;
         isMove = false;
-        anim.SetBool("IsMoveing",false);
+        anim.SetBool("IsMoveing", false);
         if (isRun)
         {
             maxSpeed /= 2;
@@ -80,8 +81,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (!isRun)
         {
-             maxSpeed *= 2;
-             isRun = true;
+            maxSpeed *= 2;
+            isRun = true;
         }
     }
 
@@ -105,24 +106,29 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         if (isMove)
-        { 
+        {
             dic = currVelocity.normalized;
             dic.y = 0;
-            if(dic!=Vector3.zero) 
-                transform.forward = Vector3.Slerp(transform.forward,currVelocity.normalized,0.1f);
-            
+            if (dic != Vector3.zero)
+                transform.forward = Vector3.Slerp(transform.forward, currVelocity.normalized, 0.1f);
+
             moveSpeed = Mathf.Lerp(moveSpeed, maxSpeed, 0.01f);
-            anim.SetFloat("MoveingSpeed",isRun?moveSpeed/maxSpeed:0);
-            
+            anim.SetFloat("MoveingSpeed", isRun ? moveSpeed / maxSpeed : 0);
         }
 
+        //应该加上相机旋转角度
+        cameraForward = gamePlayCamera.forward;
+        cameraForward.y = 0;
+        cameraRight = gamePlayCamera.right;
+        cameraRight.y = 0;
+        currDic = cameraRight.normalized * currInput.x + cameraForward.normalized * currInput.y;
+        currDic.y = -9.8f;
         // currDic = Camera.current.transform.TransformDirection(currInput);
-        playerController.Move(currInput*Time.deltaTime*moveSpeed);
-        currVelocity = playerController.velocity; 
-       
-        
-        
-        
-        
+        playerController.Move(currDic * Time.deltaTime * moveSpeed);
+        currVelocity = playerController.velocity;
+
+
+
+
     }
 }
