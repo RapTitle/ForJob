@@ -11,11 +11,17 @@ public class FSMSystem
     {
         playerInput = input;
         //添加状态
+        dicStates = new Dictionary<StateID, FSMState>();
+         dicStates[StateID.Idle] = new IdleState(this);
+        dicStates[StateID.Moveing] = new MoveState(this);
+        state = dicStates[0];
     }
+    
 
     public void Update()
     {
         state.OnUpdateState();
+        
     }
 
     public void ChangeState(StateID id)
