@@ -20,12 +20,13 @@ public class IdleState : FSMState
     public override void OnUpdateState()
     {
         Debug.Log("待机");
+        input.PlayerIdle();
         OnChanState();
     }
 
     public override void OnExitState()
     {
-        
+       
     }
 
     public override void OnChanState()
@@ -39,6 +40,8 @@ public class IdleState : FSMState
         if (fSMSystem.playerInput.isJump)
         {
             fSMSystem.ChangeState(StateID.Jump);
+            input.currDic=Vector2.zero;
+            Debug.Log("Idle->Jump");
             return;
         }
             

@@ -32,8 +32,10 @@ public class MoveState : FSMState
 
    public override void OnExitState()
    {
-      input.currDic = Vector3.zero;
       input.anim.SetBool("IsMoveing",false);
+      // input.currDic=Vector3.zero;
+      // input.currDic.y = -9.8f;
+
    }
 
    public override void OnChanState()

@@ -14,6 +14,7 @@ public class FSMSystem
         dicStates = new Dictionary<StateID, FSMState>();
          dicStates[StateID.Idle] = new IdleState(this);
         dicStates[StateID.Moveing] = new MoveState(this);
+        dicStates[StateID.Jump] = new JumpState(this);
         state = dicStates[0];
     }
     
@@ -21,6 +22,7 @@ public class FSMSystem
     public void Update()
     {
         state.OnUpdateState();
+        
         
     }
 

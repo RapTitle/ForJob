@@ -18,10 +18,11 @@ public class PlayerInput : MonoBehaviour
     //用作状态机控制
     [HideInInspector] public Vector2 currInput;
     [HideInInspector] public Vector3 currVelocity;
-    [HideInInspector] public Vector3 currDic;
+    [SerializeField] public Vector3 currDic;
     public float maxSpeed;
     public float moveSpeed;
     public float jumpSpeed;
+    public float jumpDuration;
 
     [HideInInspector] public Vector3 dic;
     [SerializeField] public bool isMove;
@@ -48,6 +49,7 @@ public class PlayerInput : MonoBehaviour
         playerInput.onMove += OnEventToMove;
         playerInput.onStopMove += OnEventToStopMove;
         playerInput.onRun += OnEventToRun;
+        playerInput.onJump += OnEventToJump;
 
     }
 
@@ -57,6 +59,7 @@ public class PlayerInput : MonoBehaviour
         playerInput.onMove -= OnEventToMove;
         playerInput.onStopMove -= OnEventToStopMove;
         playerInput.onRun -= OnEventToRun;
+        playerInput.onJump -= OnEventToJump;
     }
 
     
@@ -66,16 +69,14 @@ public class PlayerInput : MonoBehaviour
     {
         currInput = vector2;
         isMove = true;
-        anim.SetBool("IsMoveing", true);
+     
     }
     
     private void OnEventToStopMove()
     {
-        currInput.x = 0;
-        currInput.y = 0;
         moveSpeed = 0;
         isMove = false;
-        anim.SetBool("IsMoveing", false);
+      
         if (isRun)
         {
             maxSpeed /= 2;
@@ -94,10 +95,8 @@ public class PlayerInput : MonoBehaviour
 
     private void OnEventToJump()
     {
-        if (!isJump)
-        {
-            currInput.y = jumpSpeed;
-        }
+        if (playerController.isGrounded && !isJump)
+            isJump = true;
     }
 
     // IEnumerator PhysicalMotionMoroution()
@@ -118,10 +117,38 @@ public class PlayerInput : MonoBehaviour
          currDic = cameraRight.normalized * currInput.x + cameraForward.normalized * currInput.y;
          currDic.y = -9.8f;
     }
+
+    public void PlayerIdle()
+    {
+        playerController.Move(transform.up * Time.deltaTime * -9.8f);
+    }
     public void PlayerMove(Vector3 v)
     {
         playerController.Move(v * Time.deltaTime * moveSpeed);
         currVelocity = playerController.velocity;
+    }
+
+    public void PlayerJump()
+    {
+        if (jumpDuration > 0)
+        {
+            jumpDuration -= Time.deltaTime;
+            currVelocity.y = 5*jumpSpeed;
+        }
+        else if (jumpDuration <= 0)
+        {
+             currVelocity.y = -7.8f*jumpSpeed;
+             if (playerController.collisionFlags == CollisionFlags.Below)
+                 isJump = false;
+                        
+        }
+           
+        
+
+        Debug.Log("Jump");
+        playerController.Move(currVelocity*Time.deltaTime);
+
+
     }
 
     private void Update()
