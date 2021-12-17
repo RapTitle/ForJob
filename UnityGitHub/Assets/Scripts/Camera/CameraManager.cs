@@ -60,7 +60,9 @@ public class CameraManager : MonoBehaviour
          return;
       if(isDeviceMouse&&!isRMBPressed)
          return;
-      freeLookVCam.m_XAxis.m_InputAxisValue = cameraMovement.x * Time.smoothDeltaTime * -speedMultiplier;
-      freeLookVCam.m_YAxis.m_InputAxisValue = cameraMovement.y * Time.smoothDeltaTime * -speedMultiplier;
+      freeLookVCam.m_XAxis.m_InputAxisValue = cameraMovement.x * Time.deltaTime * -speedMultiplier;
+      freeLookVCam.m_YAxis.m_InputAxisValue = cameraMovement.y * Time.deltaTime * -speedMultiplier;
+      
+    
    }
 }

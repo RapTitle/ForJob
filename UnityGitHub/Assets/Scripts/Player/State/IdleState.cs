@@ -41,7 +41,6 @@ public class IdleState : FSMState
         {
             fSMSystem.ChangeState(StateID.Jump);
             input.currDic=Vector2.zero;
-            Debug.Log("Idle->Jump");
             return;
         }
             

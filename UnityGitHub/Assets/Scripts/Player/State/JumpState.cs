@@ -16,7 +16,6 @@ public class JumpState : FSMState
     { 
         input.anim.SetBool("IsAir",true);
         tmp = input.jumpDuration;
-        Debug.Log("IsAir");
     }
 
     public override void OnUpdateState()

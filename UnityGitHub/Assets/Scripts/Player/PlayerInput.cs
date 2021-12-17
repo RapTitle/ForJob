@@ -145,7 +145,6 @@ public class PlayerInput : MonoBehaviour
            
         
 
-        Debug.Log("Jump");
         playerController.Move(currVelocity*Time.deltaTime);
 
 
