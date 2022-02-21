@@ -19,7 +19,6 @@ public class IdleState : FSMState
     //待机状态的运行
     public override void OnUpdateState()
     {
-        Debug.Log("待机");
         input.PlayerIdle();
         OnChanState();
     }
