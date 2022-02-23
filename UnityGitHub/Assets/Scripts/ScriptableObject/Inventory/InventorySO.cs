@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Inventory")]
+
 public class InventorySO : ScriptableObject
 {
    //使用两个背包，一个是保存，一个即使

@@ -27,11 +27,11 @@ public class TabUICon : MonoBehaviour
    public void SetTab(TabTypeSO tabType)
    {
       currTabType = tabType;
-      b.onClick.AddListener(ClickButton);
+      b.onClick.AddListener(OnSelectTab);
    }
 
    //
-   private void ClickButton()
+   private void OnSelectTab()
    {
       onSelectTab.Invoke(currTabType);
      // buttonF.SetActive(true);

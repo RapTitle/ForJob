@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class ItemUICon : MonoBehaviour
+public class ItemGridCon : MonoBehaviour
 {
     [SerializeField] private Image itemF;
     [SerializeField] private Image itemGrid;
@@ -32,7 +32,8 @@ public class ItemUICon : MonoBehaviour
     //设置物品数量
     public void SetItemAmount(int count = 1)
     {
-        itemAmount.text += count;
+        itemAmount.gameObject.SetActive(true);
+        itemAmount.text = count.ToString();
     }
     
     //物品被选中的方法
@@ -41,6 +42,13 @@ public class ItemUICon : MonoBehaviour
         itemSelect.gameObject.SetActive(true);
         if (onSelectItem != null)
             onSelectItem.Invoke(currItemStack);
+    }
+
+    public void SetItemNull()
+    {
+        itemF.gameObject.SetActive(false);
+        itemAmount.text = "";
+        itemAmount.gameObject.SetActive(false);
     }
     
     

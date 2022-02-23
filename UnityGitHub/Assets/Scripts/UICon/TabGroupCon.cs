@@ -22,6 +22,8 @@ public class TabGroupCon : MonoBehaviour
         for (int i = 0; i < min; i++)
         {
             tabButtonList[i].SetTab(tabTypeList[i]);
+            //onSelectTab订阅OnChangeTab，当OnSelectTab执行时，相当于OnChangeTab执行
+            //双重委托
             tabButtonList[i].onSelectTab += OnChangeTab;
         }
     }
