@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: "\u6743\u6756"
   itemSprite: {fileID: 0}
   itemDescribe: "Chop\u7684\u6743\u6756\uFF0C\u867D\u7136\u662F\u4E00\u6839\u6743\u6756\uFF0C\u4F46\u6253\u8D77\u4EBA\u4E5F\u5F88\u75BC"
-  itemColor: {r: 0, g: 0.34420824, b: 1, a: 0}
+  itemColor: {r: 0, g: 0.34420824, b: 1, a: 1}
   value: 10
   itemType: {fileID: 11400000, guid: 936233cf2bdce634dabc5c95d4b0a389, type: 2}

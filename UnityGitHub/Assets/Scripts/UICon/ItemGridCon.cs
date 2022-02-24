@@ -39,16 +39,31 @@ public class ItemGridCon : MonoBehaviour
     //物品被选中的方法
     public void SelectItem()
     {
+        Debug.Log("SelectItem");
         itemSelect.gameObject.SetActive(true);
         if (onSelectItem != null)
             onSelectItem.Invoke(currItemStack);
     }
+
+    public void SetData(ItemStack itemStack)
+    {
+        currItemStack = itemStack;
+    }
+
+ 
 
     public void SetItemNull()
     {
         itemF.gameObject.SetActive(false);
         itemAmount.text = "";
         itemAmount.gameObject.SetActive(false);
+        currItemStack = null;
+    }
+
+
+    public void CancelSelect()
+    {
+        itemSelect.gameObject.SetActive(false);
     }
     
     

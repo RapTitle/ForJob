@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 41669262}
   m_Layer: 5
   m_Name: ItemBG (8)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 96833417}
   m_Layer: 5
   m_Name: ItemBG (15)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5965,7 +5965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8584906, g: 0.46466118, b: 0.3037113, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6157,7 +6157,7 @@ GameObject:
   - component: {fileID: 197216751}
   m_Layer: 5
   m_Name: ItemBG (6)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7362,7 +7362,7 @@ GameObject:
   - component: {fileID: 468275205}
   m_Layer: 5
   m_Name: ItemBG (17)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8934,7 +8934,7 @@ GameObject:
   - component: {fileID: 786627240}
   m_Layer: 5
   m_Name: ItemBG (19)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9030,7 +9030,7 @@ GameObject:
   - component: {fileID: 789340045}
   m_Layer: 5
   m_Name: ItemBG (5)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9598,7 +9598,7 @@ GameObject:
   - component: {fileID: 887721826}
   m_Layer: 5
   m_Name: ItemBG (7)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9694,7 +9694,7 @@ GameObject:
   - component: {fileID: 901924769}
   m_Layer: 5
   m_Name: ItemBG (1)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9790,7 +9790,7 @@ GameObject:
   - component: {fileID: 952512963}
   m_Layer: 5
   m_Name: ItemBG (2)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11347,7 +11347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec91f57203847f41800fa4bba3b96cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemText: {fileID: 0}
+  itemText: {fileID: 1662709069}
 --- !u!114 &1153645413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11400,7 +11400,7 @@ GameObject:
   - component: {fileID: 1159175844}
   m_Layer: 5
   m_Name: ItemBG
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11751,7 +11751,7 @@ GameObject:
   - component: {fileID: 1250674438}
   m_Layer: 5
   m_Name: ItemBG (4)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11983,7 +11983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12100,7 +12100,7 @@ GameObject:
   - component: {fileID: 1329366996}
   m_Layer: 5
   m_Name: ItemBG (16)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12206,7 +12206,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338233358}
-  m_LocalRotation: {x: 0.051584568, y: -0.0000000016858956, z: 2.879692e-11, w: 0.9986687}
+  m_LocalRotation: {x: 0.051584568, y: 0.000000002609973, z: -1.9309913e-10, w: 0.9986687}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12599,7 +12599,7 @@ GameObject:
   - component: {fileID: 1468528615}
   m_Layer: 5
   m_Name: ItemBG (11)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12895,7 +12895,7 @@ GameObject:
   - component: {fileID: 1548745447}
   m_Layer: 5
   m_Name: ItemBG (9)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12991,7 +12991,7 @@ GameObject:
   - component: {fileID: 1557872119}
   m_Layer: 5
   m_Name: ItemBG (18)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13927,7 +13927,7 @@ GameObject:
   - component: {fileID: 1682352464}
   m_Layer: 5
   m_Name: ItemBG (14)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14262,7 +14262,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700143136}
-  m_LocalRotation: {x: 0.0152739305, y: 9.894615e-10, z: -7.3329204e-11, w: 0.99988335}
+  m_LocalRotation: {x: 0.015273929, y: 0.0000000032583598, z: -1.07988306e-10, w: 0.99988335}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14713,7 +14713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -15414,7 +15414,7 @@ GameObject:
   - component: {fileID: 1814829850}
   m_Layer: 5
   m_Name: ItemBG (12)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15510,7 +15510,7 @@ GameObject:
   - component: {fileID: 1816235285}
   m_Layer: 5
   m_Name: ItemBG (3)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15961,7 +15961,7 @@ GameObject:
   - component: {fileID: 1864473307}
   m_Layer: 5
   m_Name: ItemBG (13)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16057,7 +16057,7 @@ GameObject:
   - component: {fileID: 1873644975}
   m_Layer: 5
   m_Name: ItemBG (10)
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16217,7 +16217,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891047989}
-  m_LocalRotation: {x: 0.033411328, y: -0.000000002212339, z: 6.976408e-11, w: 0.9994417}
+  m_LocalRotation: {x: 0.033411335, y: 0.0000000022923021, z: -6.7090215e-11, w: 0.9994417}
   m_LocalPosition: {x: 1.24, y: 2.41, z: -16.630001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -17142,7 +17142,12 @@ MonoBehaviour:
   - {fileID: 1557872119}
   - {fileID: 786627240}
   playerInventory: {fileID: 11400000, guid: f5f0d8932665e0b4f86f1d029e4be4b2, type: 2}
-  tabTypes: []
+  tabTypes:
+  - {fileID: 11400000, guid: 17a306cf552b63b4da78f07abe20909f, type: 2}
+  - {fileID: 11400000, guid: c36f6cf9f785e5e44aba75552aae6fa5, type: 2}
+  - {fileID: 11400000, guid: 23e3aab4dba7514428025cb4c689f3c3, type: 2}
+  selectTab: {fileID: 0}
+  selectGrid: {fileID: 0}
 --- !u!1 &2075658324
 GameObject:
   m_ObjectHideFlags: 0
@@ -17242,7 +17247,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075766790}
-  m_LocalRotation: {x: 0.033411313, y: -0.0000000016861412, z: -1.8724597e-12, w: 0.9994417}
+  m_LocalRotation: {x: 0.033411317, y: 0.0000000026130527, z: -1.4559455e-10, w: 0.9994417}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

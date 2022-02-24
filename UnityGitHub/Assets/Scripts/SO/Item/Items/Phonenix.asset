@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: "\u51E4\u51F0\u9E1F"
   itemSprite: {fileID: 0}
   itemDescribe: "\u867D\u7136\u53EA\u662F\u51E4\u51F0\u7684\u5E7C\u5D3D\uFF0C\u4F46\u4F9D\u7136\u6709\u7740\u5F3A\u5927\u7684\u529B\u91CF\u3002"
-  itemColor: {r: 1, g: 0.7657565, b: 0, a: 0}
+  itemColor: {r: 1, g: 0.7657565, b: 0, a: 1}
   value: 0
   itemType: {fileID: 11400000, guid: 4fc3b78153f28114182e1fa92070784e, type: 2}
