@@ -2,17 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogueUICon : MonoBehaviour
 {
     [SerializeField] private Text dialogueTxt;
+    [SerializeField] private Button buttonYes;
+    [SerializeField] private Button buttonNo;
+    private Text buttonTextYes;
+    private Text buttonTextNo;
+    
+    // private UnityAction onYesEvent=delegate {  };
+    // private UnityAction onNoEvent=delegate {  };
 
-    public int num;
-    // Start is called before the first frame update
-
-    private Coroutine dialogueCoroutine;
-
+    private void Start()
+    {
+        // buttonYes.onClick.AddListener();
+        buttonTextYes = buttonYes.GetComponentInChildren<Text>();
+        buttonTextNo = buttonNo.GetComponentInChildren<Text>();
+        buttonYes.gameObject.SetActive(false);
+        buttonNo.gameObject.SetActive(false);
+    }
 
     public void HideDialogueUI()
     {
@@ -24,53 +35,48 @@ public class DialogueUICon : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void SetDialogue(string dialogue)
+    {
+      
+        dialogueTxt.text = dialogue;
+    }
 
-    public void ShowDialogue(DialogueData data, float speed=0.05f)
-    {    
-        HideDialogue(data);
+    public void SetDialogue(char d)
+    {
+        dialogueTxt.text += d;
+    }
+
+    public void ClearText()
+    {
         dialogueTxt.text = "";
-        WaitForSeconds worrdSpeed = new WaitForSeconds(speed);
-        if (dialogueCoroutine != null)
-        {
-            Debug.Log("Coroutine");
-            StopCoroutine(dialogueCoroutine);
-            dialogueTxt.text = data.dialogue[num];
-            num++;
-            dialogueCoroutine = null;
-
-
-
-        }
-        else
-            dialogueCoroutine=StartCoroutine(SetDailogueDataCoroutine(data.dialogue[num], worrdSpeed));
-        
     }
 
-    private void HideDialogue(DialogueData data)
+
+    public void ShowButton()
     {
-        if (num >= data.dialogue.Count)
-        {
-            Debug.Log("Get");
-            num = 0;
-
-        }
+        buttonYes.gameObject.SetActive(true);
+        buttonNo.gameObject.SetActive(true);
     }
-    
 
-
-
-    IEnumerator SetDailogueDataCoroutine(string data, WaitForSeconds wordSpeed)
+    public void HideButton()
     {
-        foreach (char w in data)
-        {
-            dialogueTxt.text += w;
-            yield return wordSpeed;
-        }
-       
-        dialogueCoroutine = null;
-        num++;
-        
+        buttonYes.gameObject.SetActive(false);
+        buttonNo.gameObject.SetActive(false);
     }
-    
-    
+
+    public void SetButtonYesText(string buttonName)
+    {
+        buttonTextYes.text = buttonName;
+    }
+
+    public void SetButtonNoText(string buttonName)
+    {
+        buttonTextNo.text = buttonName;
+    }
+
+
+
+
+
+
 }
