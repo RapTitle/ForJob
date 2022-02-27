@@ -28,6 +28,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public bool isMove;
     [SerializeField] public bool isRun;
     [SerializeField] public bool isJump;
+    [SerializeField] private bool isTalk;
 
 
     private void Awake()
@@ -170,7 +171,44 @@ public class PlayerInput : MonoBehaviour
         // currVelocity = playerController.velocity;
 
 
-    stateMachine.Update();
+    stateMachine.Update();    
+    if (Input.GetKeyDown(KeyCode.J))
+    {
+        UIManager.GetInstance().ShowInventoryUI();
+    }
+
+    if (isTalk)
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            UIManager.GetInstance().ShowDialogueUI();
+             UIManager.GetInstance().UpdataDialogue();
+        }
+
+    
+           
+    }
+    
 
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+      
+        if (other.tag == "NPC")
+        {  
+            StepController controller;
+            other.TryGetComponent<StepController>(out controller);
+            if (controller != null)
+            { 
+                controller.SetDialogueData();
+               
+                
+                isTalk = true;
+            }
+             
+        }
+    }
+
 }

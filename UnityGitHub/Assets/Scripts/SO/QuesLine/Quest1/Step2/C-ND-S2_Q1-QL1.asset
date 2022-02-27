@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6dd177f7e2614cb7babe073b382bc, type: 3}
-  m_Name: Q1-QL1
+  m_Script: {fileID: 11500000, guid: 6d5bdd368b2e6f74ea8e404e0827a73e, type: 3}
+  m_Name: C-ND-S2_Q1-QL1
   m_EditorClassIdentifier: 
-  steps:
-  - {fileID: 11400000, guid: 2cf5f92e816b82b4a82a0bb56f1c8c39, type: 2}
-  - {fileID: 11400000, guid: d79159bdcb2fe624ea177609e4df6e95, type: 2}
+  choiceButtons:
+  - choiceName: "\u597D\u4E86"
+    myDialogueData: {fileID: 0}
+  - choiceName: "\u8FD8\u6CA1"
+    myDialogueData: {fileID: 0}

@@ -45,14 +45,24 @@ public class InventorySO : ScriptableObject
    }
    
    //判断物品是否存在
-   public bool ItemContains(ItemSO item)
+   public bool ItemContains(ItemSO item, int count = 1)
    {
        for (int i = 0; i < currItemStacks.Count; i++)
        {
-           if (item == currItemStacks[i].item)
+           if (item == currItemStacks[i].item && count == currItemStacks[i].amount)
                return true;
        }
 
+       return false;
+   }
+
+   public bool ItemContains(ItemStack itemStack)
+   {
+       for (int i = 0; i < currItemStacks.Count; i++)
+       {
+           if (itemStack.item == currItemStacks[i].item && itemStack.amount <= currItemStacks[i].amount)
+               return true;
+       }
        return false;
    }
 

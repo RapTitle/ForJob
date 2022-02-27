@@ -31,13 +31,19 @@ public class StepController : MonoBehaviour
    public void SetDialogueData()
    {
        currDialogueData = QuestManager.GetInstance().InteractWithCharacter(actor);
-       UIManager.GetInstance().SetData(currDialogueData);
+       if (currDialogueData == null)
+           UIManager.GetInstance().SetData(defaultDialogue);
+       else
+       {
+           UIManager.GetInstance().SetData(currDialogueData);
+       }
    }
 
 
    //碰撞器在碰撞区域内运行
    public void UpdataDialogue()
    {
+       UIManager.GetInstance().UpdataDialogue();
        //UIManager进行很对话 正常对话
        //当一段对话结束，UIManager根据Data是否有Choice进行判断
        //判断经验QuestManager进行，根据判断结果更正Data,然后此脚本根据QuestManager获得新的currDialogueData
@@ -46,13 +52,13 @@ public class StepController : MonoBehaviour
 
    private void Start()
    {
-       SetDialogueData();
-       UIManager.GetInstance().ShowDialogueUI();
+       // SetDialogueData();
+       // UIManager.GetInstance().ShowDialogueUI();
    }
 
    private void Update()
    {
-       if(Input.GetKeyDown(KeyCode.K))
-           UIManager.GetInstance().UpdataDialogue();
+       // if(Input.GetKeyDown(KeyCode.K))
+       //     UIManager.GetInstance().UpdataDialogue();
    }
 }

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6dd177f7e2614cb7babe073b382bc, type: 3}
-  m_Name: Q1-QL1
+  m_Script: {fileID: 11500000, guid: 57c0ee829dbc49e498a6c0b96dde3be3, type: 3}
+  m_Name: DL-ND-S2_Q1-QL1
   m_EditorClassIdentifier: 
-  steps:
-  - {fileID: 11400000, guid: 2cf5f92e816b82b4a82a0bb56f1c8c39, type: 2}
-  - {fileID: 11400000, guid: d79159bdcb2fe624ea177609e4df6e95, type: 2}
+  dialogues:
+  - "\u8FD9\u4E48\u5FEB\u6C49\u5821\u5C31\u505A\u597D\u4E86\u5417\uFF1F"

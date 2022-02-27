@@ -59,7 +59,18 @@ public class InventoryUICon : MonoBehaviour
     }
 
 
-    private void FillInventory()
+  public void HideInventoryUI()
+  {
+      gameObject.SetActive(false);
+  }
+
+  public void ShowInventoryUI()
+  {
+      gameObject.SetActive(true);
+  }
+
+
+  private void FillInventory()
     {
         List<ItemStack> listItemStack = new List<ItemStack>();
         for (int i = 0; i < playerInventory.currItemStacks.Count; i++)

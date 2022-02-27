@@ -23,6 +23,10 @@ public class DialogueUICon : MonoBehaviour
         buttonTextNo = buttonNo.GetComponentInChildren<Text>();
         buttonYes.gameObject.SetActive(false);
         buttonNo.gameObject.SetActive(false);
+        
+        
+        buttonYes.onClick.AddListener(QuestManager.GetInstance().Check);
+        buttonNo.onClick.AddListener(QuestManager.GetInstance().UnCheck);
     }
 
     public void HideDialogueUI()

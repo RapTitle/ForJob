@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   currItemStacks:
-  - item: {fileID: 11400000, guid: 93cacb8f3f9485a449dc9d5e3b3e1384, type: 2}
-    amount: 5
   - item: {fileID: 11400000, guid: 04c59dc360c092549bed6fcce19f4dc3, type: 2}
     amount: 1
+  - item: {fileID: 11400000, guid: 93cacb8f3f9485a449dc9d5e3b3e1384, type: 2}
+    amount: 97

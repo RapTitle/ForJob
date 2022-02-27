@@ -10,6 +10,7 @@ public class UIManager : Singleton<UIManager>
     
     //引用对象
     [SerializeField] private DialogueUICon dialogueUICon;
+    [SerializeField] private InventoryUICon inventoryUICon;
 
     [Header("控制")] 
     [SerializeField] private float textWait;
@@ -17,7 +18,7 @@ public class UIManager : Singleton<UIManager>
     private WaitForSeconds textWaitTime;
     private int currline = 0;
 
-    private DialogueDataSO dialogueData;
+   [SerializeField] private DialogueDataSO dialogueData;
 
     private Coroutine setDialogueCoroutine;
 
@@ -32,7 +33,19 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        dialogueUICon.HideDialogueUI();
+       HideDialogueUI();
+       HideInventoryUI();
+        
+    }
+
+    public void ShowInventoryUI()
+    {
+        inventoryUICon.ShowInventoryUI();
+    }
+
+    public void HideInventoryUI()
+    {
+        inventoryUICon.HideInventoryUI();
     }
 
     public void ShowDialogueUI()
@@ -40,11 +53,27 @@ public class UIManager : Singleton<UIManager>
         dialogueUICon.ShouDialogueUI();
     }
 
+    public void HideDialogueUI()
+    {
+        dialogueUICon.HideDialogueUI();
+    }
+    private void HideButton()
+    {
+        dialogueUICon.HideButton();
+    }
 
     public void SetData(DialogueDataSO data)
     {
-      
+        HideButton();
         dialogueData = data;
+        currline = 0;
+    }
+
+    public void SetData(DialogueLineSO dialogueLine, ChoiceDataSO choice = null)
+    {
+        HideButton();
+        dialogueData = new DialogueDataSO(dialogueLine, choice);
+        currline = 0;
     }
 
 
@@ -52,6 +81,8 @@ public class UIManager : Singleton<UIManager>
     {  
         if (currline >= dialogueData.dialogueLine.dialogues.Count)
         {
+            if (dialogueData.choiceButton == null)
+                HideDialogueUI(); 
             Debug.Log("对话完成");
             return;
         }
@@ -82,9 +113,10 @@ public class UIManager : Singleton<UIManager>
             yield return textWaitTime;
         }
 
-        setDialogueCoroutine = null;
-        CheckDialogue();
+        setDialogueCoroutine = null; 
         currline += 1;
+        CheckDialogue();
+       
     }
 
 
@@ -94,8 +126,10 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     private void CheckDialogue()
     {
+        
         if (currline < dialogueData.dialogueLine.dialogues.Count)
             return;
+        
         if (dialogueData.choiceButton != null)
         {
             dialogueUICon.ShowButton();
@@ -105,12 +139,9 @@ public class UIManager : Singleton<UIManager>
         //如果没有Button,说明可以直接检擦
         else
         {
-            //QuestManager.GetInstance().Check();
+            QuestManager.GetInstance().Check();
         }
     }
 
-    private void HideButton()
-    {
-        dialogueUICon.HideButton();
-    }
+
 }

@@ -10,8 +10,9 @@ public class QuestManager : Singleton<QuestManager>
     //数据存储
     private QuestLineSO currQuestLine;
     private QuestSO currQuest;
-    private StepSO currStep;
+   [SerializeField] private StepSO currStep;
    [SerializeField] private DialogueDataSO currDialogueData;
+   [SerializeField] private InventorySO playerInventory;
 
    private StepType currType;
     
@@ -59,8 +60,7 @@ public class QuestManager : Singleton<QuestManager>
     public DialogueDataSO InteractWithCharacter(ActorSO actor)
     {
         
-        Debug.Log("Interact");
-        if (currStep.actor == actor)
+        if (currStep.actor == actor&&!currStep.isDone)
             return currDialogueData;
         else
         {
@@ -72,9 +72,13 @@ public class QuestManager : Singleton<QuestManager>
 
     public void Check()
     {
+        if (currStep.isDone)
+            return;
         switch (currStep.type)
         {
             case StepType.None:
+                currStep.type = currType;
+                FailToNormal();
                 break;
             case StepType.Dialogue:
                 ChangeStep();
@@ -86,6 +90,27 @@ public class QuestManager : Singleton<QuestManager>
                 UIManager.GetInstance().UpdataDialogue();
                 break;
             case StepType.Check:
+                Debug.Log("CheckOK");
+                if (playerInventory.ItemContains(currStep.itemStack))
+                {
+                  
+                    NormalToFinish();
+                    playerInventory.Remove(currStep.itemStack.item,currStep.itemStack.amount);
+                    UIManager.GetInstance().SetData(currDialogueData);
+                    currStep.type = StepType.Dialogue;
+                    UIManager.GetInstance().UpdataDialogue();
+                }
+                else
+                {
+                    NormalToFail();
+                    UIManager.GetInstance().SetData(currDialogueData);
+                    currStep.type = StepType.None;
+                    UIManager.GetInstance().UpdataDialogue();
+                    
+
+                }
+                
+                  
                 break;
 
 
@@ -93,15 +118,26 @@ public class QuestManager : Singleton<QuestManager>
         }
     }
 
+    public void UnCheck()
+    {
+        NormalToFail();
+        UIManager.GetInstance().SetData(currDialogueData);
+        currStep.type = StepType.None;
+        UIManager.GetInstance().UpdataDialogue();
+        FailToNormal();
+    }
+
     //当完成一个Step时，应该将此Step的isDone改为true并切换至下一个Step,
     public void ChangeStep()
     {
-        if (currStepNum == currQuest.steps.Count - 1)
-            return;
+       
         currStep.type = currType;
         currStep.isDone = true;
         currStepNum++;
+        if (currStepNum >= currQuest.steps.Count)
+            return;
         currStep = currQuest.steps[currStepNum];
+        currDialogueData = currStep.normalDialogueData;
         currType = currStep.type;
 
     }
