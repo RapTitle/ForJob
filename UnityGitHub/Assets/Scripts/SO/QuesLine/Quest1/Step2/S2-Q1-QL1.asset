@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661219268a00c6d4793535e216671856, type: 3}
   m_Name: S2-Q1-QL1
   m_EditorClassIdentifier: 
-  actor: {fileID: 11400000, guid: 74d3a188330b1ca4696a67576e987bfc, type: 2}
+  actor: {fileID: 11400000, guid: 8132efb685282b749a3a67f192e10841, type: 2}
   normalDialogueData: {fileID: 11400000, guid: cd0d5dfcb04dae04aaa124f9884ae3ad, type: 2}
   finishDialogueData: {fileID: 11400000, guid: 090a88a311f7c6244847d2203d9d5150, type: 2}
   failDialogueData: {fileID: 11400000, guid: df4261c3e3c02094bbf0c342f44e9183, type: 2}
   type: 4
   itemStack:
-    item: {fileID: 11400000, guid: 93cacb8f3f9485a449dc9d5e3b3e1384, type: 2}
+    item: {fileID: 11400000, guid: 04c59dc360c092549bed6fcce19f4dc3, type: 2}
     amount: 1
   isDone: 1

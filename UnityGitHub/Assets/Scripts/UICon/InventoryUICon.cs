@@ -10,8 +10,10 @@ public class InventoryUICon : MonoBehaviour
     //对子物体的引用
     [Header("子物体引用")]
     [SerializeField] private TabGroupCon tabGroup;
-    [SerializeField] private ItemDetailedUICon itemDetailed;
+    [SerializeField] private ItemDetailedUICon itemDetailed; 
+    [SerializeField] private ItemUseCon itemShowUse;
     [SerializeField] private List<ItemGridCon> itemGrids;
+   
     
     //数据存储
     [Header("玩家背包仓库")] 
@@ -19,12 +21,22 @@ public class InventoryUICon : MonoBehaviour
 
     [Header("背包标签分页")] 
     [SerializeField] private List<TabTypeSO> tabTypes;
-    
+
+
+    [Header("广播事件")] 
+    [SerializeField] private ItemEventChannelSO useItemEvent;
+
+    [SerializeField] private ItemEventChannelSO equipItemEvent;
+
+    [SerializeField] private ItemEventChannelSO otherItemEvent;
+
+    [SerializeField] private IntEventChannelSO restoreHealth;
+
     //当前分页
     ////装填前要知道当前分页情况，所以需要一个TabTypeSO存储
-  [SerializeField]  private TabTypeSO selectTab;
-  [SerializeField] private ItemGridCon selectGrid; 
-  private List<RaycastResult> list = new List<RaycastResult>();
+    private TabTypeSO selectTab;
+    private ItemGridCon selectGrid; 
+    private List<RaycastResult> list = new List<RaycastResult>();
 
 
   private UnityAction onCancelSelect;
@@ -46,9 +58,10 @@ public class InventoryUICon : MonoBehaviour
         tabGroup.SetTabGroup(tabTypes);
         tabGroup.onChangeTab+=ChangeTab;
         selectTab = tabTypes[0];
-        
+        itemShowUse.onClicked += UseItem;
         //
         FillInventory();
+        
         
         
         //开始分页应该置于第一个分页
@@ -137,6 +150,7 @@ public class InventoryUICon : MonoBehaviour
                        
                         onCancelSelect = null;
                         selectGrid.SelectItem();
+                        itemShowUse.SetButton(selectGrid.currItemStack);
                         onCancelSelect += selectGrid.CancelSelect;
                     }
                 }
@@ -183,5 +197,27 @@ public class InventoryUICon : MonoBehaviour
         }
 
         return new RaycastResult();
+    }
+
+    private void UseItem()
+    {
+        if (selectGrid.currItemStack != null)
+        {
+            ItemSO itemToAction = ScriptableObject.CreateInstance<ItemSO>();
+            itemToAction = selectGrid.currItemStack.item;
+            switch (itemToAction.itemType.actionType)
+            {
+                case ActionType.Equip:
+                    Debug.Log("装备");
+                    break;
+                case ActionType.Use:
+                    Debug.Log("使用物品");
+                    break;
+                case ActionType.DoNothing:
+                    Debug.Log("扩展道具");
+                    break;
+                    
+            }
+        }
     }
 }

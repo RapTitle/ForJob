@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Item")]
-public class ItemSO : ScriptableObject
+public class ItemSO : SerializableScripatleObject
 {
     //一个物品具有什么属性
     /*1.物品名字

@@ -7,4 +7,5 @@ using UnityEngine;
 public class QuestSO : ScriptableObject
 {
     public List<StepSO> steps;
+    public bool isDone;
 }

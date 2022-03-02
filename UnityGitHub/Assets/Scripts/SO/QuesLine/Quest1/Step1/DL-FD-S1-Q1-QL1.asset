@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: DL-FD-S1-Q1-QL1
   m_EditorClassIdentifier: 
   dialogues:
-  - "\u653E\u5F03\u4E86\uFF1F"
-  - "\u679C\u7136\u9664\u4E86\u6211\u8001\u5927\u6CA1\u4EBA\u914D\u7684\u4E0A\u62E5\u6709\u91D1\u5F69\u5200\u554A"
+  - "\u554A\uFF0C\u6211\u771F\u7684\u597D\u997F"

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class QuestManager : Singleton<QuestManager>
 {
@@ -15,11 +17,12 @@ public class QuestManager : Singleton<QuestManager>
    [SerializeField] private InventorySO playerInventory;
 
    private StepType currType;
+   private bool isThis=false;
     
     //索引
-    private int currQuestLineNum=0;
-    private int currQuestNum=0;
-    private int currStepNum=0;
+    public int currQuestLineNum=0;
+    public int currQuestNum=0;
+    public int currStepNum=0;
    
     
     //强制要求线性
@@ -29,6 +32,19 @@ public class QuestManager : Singleton<QuestManager>
     {
         base.Awake();
         StartQuestLine();
+    }
+
+
+    private void OnEnable()
+    {
+        currQuestLineNum = SaveSystem.GetInstance().saveData.saveQueseLine;
+        currQuestNum = SaveSystem.GetInstance().saveData.saveQuest;
+        currStepNum = SaveSystem.GetInstance().saveData.saveStep;
+        for (int i = 0; i < currStepNum; i++)
+        {
+            currQuest.steps[i].isDone = true;
+        }
+
     }
 
     private void StartQuestLine()
@@ -59,11 +75,17 @@ public class QuestManager : Singleton<QuestManager>
  
     public DialogueDataSO InteractWithCharacter(ActorSO actor)
     {
-        
-        if (currStep.actor == actor&&!currStep.isDone)
+
+        if (currStep.actor == actor && !currStep.isDone)
+        {
+            isThis = true;
             return currDialogueData;
+        }
+
+      
         else
         {
+            isThis = false;
             return null;
         }
 
@@ -72,7 +94,7 @@ public class QuestManager : Singleton<QuestManager>
 
     public void Check()
     {
-        if (currStep.isDone)
+        if (currStep.isDone||!isThis)
             return;
         switch (currStep.type)
         {
@@ -106,11 +128,15 @@ public class QuestManager : Singleton<QuestManager>
                     UIManager.GetInstance().SetData(currDialogueData);
                     currStep.type = StepType.None;
                     UIManager.GetInstance().UpdataDialogue();
-                    
-
                 }
-                
-                  
+                break;
+            case  StepType.Give:
+                Debug.Log("GiverOK");
+                playerInventory.AddItem(currStep.itemStack.item,currStep.itemStack.amount);
+                NormalToFinish();
+                UIManager.GetInstance().SetData(currDialogueData);
+                currStep.type = StepType.Dialogue;
+                UIManager.GetInstance().UpdataDialogue();
                 break;
 
 
@@ -120,6 +146,8 @@ public class QuestManager : Singleton<QuestManager>
 
     public void UnCheck()
     {
+        if (currStep.isDone||!isThis)
+            return;
         NormalToFail();
         UIManager.GetInstance().SetData(currDialogueData);
         currStep.type = StepType.None;
@@ -135,10 +163,52 @@ public class QuestManager : Singleton<QuestManager>
         currStep.isDone = true;
         currStepNum++;
         if (currStepNum >= currQuest.steps.Count)
-            return;
+        {
+            Debug.Log("ChangeQuest");
+           ChangeQuest();
+           return;
+        }
+      
+      
         currStep = currQuest.steps[currStepNum];
         currDialogueData = currStep.normalDialogueData;
         currType = currStep.type;
+  
+    }
+
+    private void ChangeQuest()
+    {
+        currQuestNum++;
+        if (currQuestNum >= currQuestLine.questLines.Count)
+        {
+            ChangeQuestLine();
+            return;
+        }
+        currQuest = currQuestLine.questLines[currQuestNum];
+        currStepNum = 0;
+        currStep = currQuest.steps[currStepNum];
+    }
+
+    private void ChangeQuestLine()
+    {
+        currQuestLineNum++;
+        if (currQuestLineNum >= questLines.Count)
+        {
+           Win();
+           return;
+          
+        }
+
+        currQuestLine = questLines[currQuestLineNum];
+        currQuestNum = 0;
+
+    }
+
+    private void Win()
+    {
+        currDialogueData = null;
+        Debug.Log("You Win!");
+     
 
     }
     

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc7ad18f5b502d745bd21291445f0ac3, type: 3}
-  m_Name: Town
+  m_Script: {fileID: 11500000, guid: 428542f5221ceb74baa257d5a0e1fd61, type: 3}
+  m_Name: FD-S3-Q1-QL1
   m_EditorClassIdentifier: 
-  actorName: Town
+  dialogueLine: {fileID: 11400000, guid: 91b1959a9bc8b9f4a914eeb1b1bb4ea2, type: 2}
+  choiceButton: {fileID: 0}

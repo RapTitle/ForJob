@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
@@ -11,6 +12,8 @@ public class UIManager : Singleton<UIManager>
     //引用对象
     [SerializeField] private DialogueUICon dialogueUICon;
     [SerializeField] private InventoryUICon inventoryUICon;
+    [SerializeField] private GameObject gameMenu;
+    [SerializeField] private GameObject gameInteract;
 
     [Header("控制")] 
     [SerializeField] private float textWait;
@@ -35,11 +38,13 @@ public class UIManager : Singleton<UIManager>
     {
        HideDialogueUI();
        HideInventoryUI();
+       HideInteract();
         
     }
 
     public void ShowInventoryUI()
     {
+        HideInteract();
         inventoryUICon.ShowInventoryUI();
     }
 
@@ -48,8 +53,14 @@ public class UIManager : Singleton<UIManager>
         inventoryUICon.HideInventoryUI();
     }
 
+    public bool isShowInventory()
+    {
+        return inventoryUICon.gameObject.activeSelf;
+    }
+    
     public void ShowDialogueUI()
     {
+        HideInteract();
         dialogueUICon.ShouDialogueUI();
     }
 
@@ -60,6 +71,32 @@ public class UIManager : Singleton<UIManager>
     private void HideButton()
     {
         dialogueUICon.HideButton();
+    }
+
+    public void ShowMenu()
+    {
+        gameMenu.SetActive(true);
+    }
+
+    public void HideMenu()
+    {
+        gameMenu.SetActive(false);
+    }
+
+    public bool isMenuActive()
+    {
+        return gameMenu.activeSelf;
+    }
+
+    public void ShowInteract(string name)
+    {
+        gameInteract.SetActive(true);
+        gameInteract.GetComponentInChildren<Text>().text = name;
+    }
+
+    public void HideInteract()
+    {
+        gameInteract.SetActive(false);
     }
 
     public void SetData(DialogueDataSO data)

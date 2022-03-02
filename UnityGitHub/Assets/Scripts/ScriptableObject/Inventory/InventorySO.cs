@@ -66,6 +66,7 @@ public class InventorySO : ScriptableObject
        return false;
    }
 
+  
 }
 
 //将Item和Amount合并
@@ -81,3 +82,6 @@ public class ItemStack
         this.amount = amount;
     }
 }
+
+
+

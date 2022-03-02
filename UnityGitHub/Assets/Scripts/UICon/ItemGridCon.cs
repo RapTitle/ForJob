@@ -11,7 +11,7 @@ public class ItemGridCon : MonoBehaviour
     [SerializeField] private Text itemAmount;
     [SerializeField] private Image itemSelect;
 
-    private ItemStack currItemStack;
+    public ItemStack currItemStack;
 
     public UnityAction<ItemStack> onSelectItem;
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C-ND-S2_Q1-QL1
   m_EditorClassIdentifier: 
   choiceButtons:
-  - choiceName: "\u597D\u4E86"
+  - choiceName: "\u5728\u8FD9\u91CC"
     myDialogueData: {fileID: 0}
-  - choiceName: "\u8FD8\u6CA1"
+  - choiceName: ......
     myDialogueData: {fileID: 0}

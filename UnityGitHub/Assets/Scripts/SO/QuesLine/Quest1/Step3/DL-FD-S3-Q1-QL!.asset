@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c0ee829dbc49e498a6c0b96dde3be3, type: 3}
+  m_Name: DL-FD-S3-Q1-QL!
+  m_EditorClassIdentifier: 
+  dialogues:
+  - "\u6211...\u6211...\u6211\u60F3\u5230\u5979\u5C31...\u5C31...\u5C31\u7D27\u5F20....\u8BF4\u4E0D\u51FA\u8BDD"

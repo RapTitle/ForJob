@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -29,6 +30,11 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] public bool isRun;
     [SerializeField] public bool isJump;
     [SerializeField] private bool isTalk;
+
+
+    [SerializeField] private InventorySO playerInventyory;
+
+    private GameObject item;
 
 
     private void Awake()
@@ -172,21 +178,47 @@ public class PlayerInput : MonoBehaviour
 
 
     stateMachine.Update();    
-    if (Input.GetKeyDown(KeyCode.J))
+    if (Input.GetKeyDown(KeyCode.Tab))
     {
-        UIManager.GetInstance().ShowInventoryUI();
+        //打开UI后禁用行动输入，关闭后重启
+        if(UIManager.GetInstance().isShowInventory()) 
+            UIManager.GetInstance().HideInventoryUI();
+        else
+            UIManager.GetInstance().ShowInventoryUI();
+    }
+
+    if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        if(UIManager.GetInstance().isMenuActive())
+            UIManager.GetInstance().HideMenu();
+        else
+        {
+            UIManager.GetInstance().ShowMenu();
+        }
     }
 
     if (isTalk)
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
+            UIManager.GetInstance().HideInteract();
             UIManager.GetInstance().ShowDialogueUI();
              UIManager.GetInstance().UpdataDialogue();
         }
 
     
            
+    }
+
+    if (item != null)
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            UIManager.GetInstance().HideInteract();
+            playerInventyory.AddItem(item.GetComponent<ItemCon>().ReturnItem());
+            Destroy(item.gameObject);
+            Debug.Log("拾取"); 
+        }
     }
     
 
@@ -198,6 +230,7 @@ public class PlayerInput : MonoBehaviour
       
         if (other.tag == "NPC")
         {  
+            UIManager.GetInstance().ShowInteract("K:对话");
             StepController controller;
             other.TryGetComponent<StepController>(out controller);
             if (controller != null)
@@ -209,6 +242,22 @@ public class PlayerInput : MonoBehaviour
             }
              
         }
+        
+        if (other.tag == "Item") 
+        { 
+            Debug.Log("Trigger");
+            UIManager.GetInstance().ShowInteract("J:拾取");
+            item = other.gameObject;
+        }
+
+       
     }
 
+   
+    private void OnTriggerExit(Collider other)
+    {
+        UIManager.GetInstance().HideInteract();
+        item = null;
+        isTalk = false;
+    }
 }
