@@ -82,6 +82,12 @@ public class InventoryUICon : MonoBehaviour
       gameObject.SetActive(true);
   }
 
+  private void OnDisable()
+  {
+      itemShowUse.onClicked = null;
+     // itemShowUse.onClicked -= UseItem;
+  }
+
 
   private void FillInventory()
     {
@@ -201,6 +207,7 @@ public class InventoryUICon : MonoBehaviour
 
     private void UseItem()
     {
+      
         if (selectGrid.currItemStack != null)
         {
             ItemSO itemToAction = ScriptableObject.CreateInstance<ItemSO>();
@@ -208,12 +215,18 @@ public class InventoryUICon : MonoBehaviour
             switch (itemToAction.itemType.actionType)
             {
                 case ActionType.Equip:
+                    equipItemEvent.OnRaisedEvent(itemToAction);
+                    FillInventory();
                     Debug.Log("装备");
                     break;
                 case ActionType.Use:
+                    useItemEvent.OnRaisedEvent(itemToAction);
+                    FillInventory();
                     Debug.Log("使用物品");
                     break;
                 case ActionType.DoNothing:
+                    otherItemEvent.OnRaisedEvent(itemToAction);
+                    //FillInventory();
                     Debug.Log("扩展道具");
                     break;
                     

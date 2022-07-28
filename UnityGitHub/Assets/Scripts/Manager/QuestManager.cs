@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+public class QuestSaveData
+{
+    public int currQuestLineNum=0;
+    public int currQuestNum=0;
+    public int currStepNum=0;
+}
+
 public class QuestManager : Singleton<QuestManager>
 {
     //数据引用
@@ -20,6 +27,7 @@ public class QuestManager : Singleton<QuestManager>
    private bool isThis=false;
     
     //索引
+    public QuestSaveData saveData=new QuestSaveData();
     public int currQuestLineNum=0;
     public int currQuestNum=0;
     public int currStepNum=0;
@@ -28,23 +36,26 @@ public class QuestManager : Singleton<QuestManager>
     //强制要求线性
 
     //初始化
-    protected override void Awake()
-    {
-        base.Awake();
-        StartQuestLine();
-    }
 
 
     private void OnEnable()
     {
-        currQuestLineNum = SaveSystem.GetInstance().saveData.saveQueseLine;
-        currQuestNum = SaveSystem.GetInstance().saveData.saveQuest;
-        currStepNum = SaveSystem.GetInstance().saveData.saveStep;
-        for (int i = 0; i < currStepNum; i++)
+        WithJson.GetInstance.LoadFromFile<QuestSaveData>(saveData, "/Json/QuestData.json");
+        if (saveData != default)
         {
-            currQuest.steps[i].isDone = true;
+             currQuestNum = saveData.currQuestNum;
+             currQuestLineNum = saveData.currQuestLineNum;
+             currStepNum = saveData.currStepNum;
         }
+        
+        //读取存储的任务
+        
 
+    }
+
+    private void Start()
+    {
+        StartQuestLine();
     }
 
     private void StartQuestLine()
@@ -56,23 +67,27 @@ public class QuestManager : Singleton<QuestManager>
         currType = currStep.type;
     }
 
+    
+    //正常对话到完成对话
     private void NormalToFinish()
     {
         currDialogueData = currStep.finishDialogueData;
+       
     }
-
+    //正常对话到失败对话
     private void NormalToFail()
     {
         currDialogueData = currStep.failDialogueData;
     }
 
+    //失败到正常
     private void FailToNormal()
     {
         currDialogueData = currStep.normalDialogueData;
     }
 
 
- 
+    
     public DialogueDataSO InteractWithCharacter(ActorSO actor)
     {
 
@@ -160,8 +175,9 @@ public class QuestManager : Singleton<QuestManager>
     {
        
         currStep.type = currType;
-        currStep.isDone = true;
-        currStepNum++;
+        currStepNum++; 
+        Save();
+        //此任务步骤完成，切换到下一个任务
         if (currStepNum >= currQuest.steps.Count)
         {
             Debug.Log("ChangeQuest");
@@ -169,7 +185,7 @@ public class QuestManager : Singleton<QuestManager>
            return;
         }
       
-      
+      //未完成，则跳转之下一个Step
         currStep = currQuest.steps[currStepNum];
         currDialogueData = currStep.normalDialogueData;
         currType = currStep.type;
@@ -202,6 +218,15 @@ public class QuestManager : Singleton<QuestManager>
         currQuestLine = questLines[currQuestLineNum];
         currQuestNum = 0;
 
+    }
+
+    private void Save()
+    {
+        Debug.Log("Save");
+        saveData.currQuestNum = currQuestNum;
+        saveData.currQuestLineNum = currQuestLineNum;
+        saveData.currStepNum = currStepNum;
+        WithJson.GetInstance.SaveToJson(saveData,"/Json/QuestData.json");
     }
 
     private void Win()

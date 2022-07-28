@@ -1,0 +1,14 @@
+{
+    "playerName": "V",
+    "playerCurHp": 100,
+    "playerMaxHp": 100,
+    "recoverHp": 0.009999999776482582,
+    "curEnergyNum": 300,
+    "maxEnergyNum": 300,
+    "recoverEnergy": 0.009999999776482582,
+    "walkSpeed": 0.8999999761581421,
+    "runTimeSpeed": 2.0,
+    "curShield": 39,
+    "maxShield": 1000,
+    "recoverShield": 0.0
+}

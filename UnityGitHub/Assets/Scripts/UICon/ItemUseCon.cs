@@ -40,6 +40,7 @@ public class ItemUseCon : MonoBehaviour
 
    private void OnClicked()
    {
+    
       if (onClicked != null)
          onClicked();
    }

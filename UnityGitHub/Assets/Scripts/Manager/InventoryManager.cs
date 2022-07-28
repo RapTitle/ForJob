@@ -16,11 +16,13 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private ItemEventChannelSO otherItemEvent;
 
 
-    private void OnEnable()
+    private void Start()
     {
-         // StartCoroutine(SaveSystem.GetInstance().LoadSaveInventory());
+        useItemEvent.onEventRaised += RemoveItem;
     }
-    
-    
 
+    private void RemoveItem(ItemSO item)
+    {
+        playerInventory.Remove(item);
+    }
 }
