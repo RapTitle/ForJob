@@ -37,11 +37,19 @@ public class PlayerInput : MonoBehaviour
     private GameObject item;
 
 
+    private PlayAudio playAudio;
+
+    private int dialogueLineNums;
+    private int curLineNum;
+    
+
+
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         stateMachine = new FSMSystem(this);
+        playAudio = GetComponent<PlayAudio>();
     }
 
     void Start()
@@ -201,9 +209,15 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
+            curLineNum++;
             UIManager.GetInstance().HideInteract();
             UIManager.GetInstance().ShowDialogueUI();
              UIManager.GetInstance().UpdataDialogue();
+             if (curLineNum <= dialogueLineNums)
+             {
+                 playAudio.InternalPlayAudio(false);
+             }
+             
         }
 
     
@@ -235,7 +249,10 @@ public class PlayerInput : MonoBehaviour
             other.TryGetComponent<StepController>(out controller);
             if (controller != null)
             { 
-                controller.SetDialogueData();
+            
+
+                dialogueLineNums = controller.SetDialogueData();
+                playAudio.SetAudioCueSO(controller.audioCueSo);
                
                 
                 isTalk = true;
@@ -256,6 +273,7 @@ public class PlayerInput : MonoBehaviour
    
     private void OnTriggerExit(Collider other)
     {
+        curLineNum = 0;
         UIManager.GetInstance().HideInteract();
         item = null;
         isTalk = false;

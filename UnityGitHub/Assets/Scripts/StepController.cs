@@ -23,27 +23,36 @@ public class StepController : MonoBehaviour
     //储存的数据
    [SerializeField] private DialogueDataSO currDialogueData;
 
+   public AudioCueSO audioCueSo;
+
 
    
 
     
     //碰撞器Enter后使用
-   public void SetDialogueData()
+   public int SetDialogueData()
    {
        currDialogueData = QuestManager.GetInstance().InteractWithCharacter(actor);
        if (currDialogueData == null)
-           UIManager.GetInstance().SetData(defaultDialogue);
+       {
+            UIManager.GetInstance().SetData(defaultDialogue);
+            return defaultDialogue.dialogues.Count;
+       }
+          
        else
        {
            UIManager.GetInstance().SetData(currDialogueData);
+          return currDialogueData.dialogueLine.dialogues.Count;
        }
+
+       
    }
 
 
    //碰撞器在碰撞区域内运行
    public void UpdataDialogue()
    {
-       UIManager.GetInstance().UpdataDialogue();
+       //UIManager.GetInstance().UpdataDialogue();
        //UIManager进行很对话 正常对话
        //当一段对话结束，UIManager根据Data是否有Choice进行判断
        //判断经验QuestManager进行，根据判断结果更正Data,然后此脚本根据QuestManager获得新的currDialogueData

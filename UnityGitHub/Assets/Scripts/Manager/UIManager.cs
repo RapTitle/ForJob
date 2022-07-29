@@ -67,6 +67,7 @@ public class UIManager : Singleton<UIManager>
     public void HideDialogueUI()
     {
         dialogueUICon.HideDialogueUI();
+
     }
     private void HideButton()
     {
@@ -120,7 +121,7 @@ public class UIManager : Singleton<UIManager>
         {
             if (dialogueData.choiceButton == null)
                 HideDialogueUI(); 
-            Debug.Log("对话完成");
+            
             return;
         }
         SetDialogue(dialogueData.dialogueLine.dialogues[currline]);
