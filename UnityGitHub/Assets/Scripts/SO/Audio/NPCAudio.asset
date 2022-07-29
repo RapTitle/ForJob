@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18fc466c6e623b43a097bbc6d188221, type: 3}
   m_Name: NPCAudio
   m_EditorClassIdentifier: 
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 5c5ba01389c5e34439357008167ea73f, type: 3}
+  - {fileID: 8300000, guid: 51badd0e91ffb1f4f8bcdd3a1b79da3b, type: 3}
+  - {fileID: 8300000, guid: 604feef760e9ff74c9cd00cbcba48d24, type: 3}

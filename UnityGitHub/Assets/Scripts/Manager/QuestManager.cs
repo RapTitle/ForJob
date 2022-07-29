@@ -176,7 +176,7 @@ public class QuestManager : Singleton<QuestManager>
        
         currStep.type = currType;
         currStepNum++; 
-        Save();
+       
         //此任务步骤完成，切换到下一个任务
         if (currStepNum >= currQuest.steps.Count)
         {
@@ -184,7 +184,7 @@ public class QuestManager : Singleton<QuestManager>
            ChangeQuest();
            return;
         }
-      
+       Save();
       //未完成，则跳转之下一个Step
         currStep = currQuest.steps[currStepNum];
         currDialogueData = currStep.normalDialogueData;

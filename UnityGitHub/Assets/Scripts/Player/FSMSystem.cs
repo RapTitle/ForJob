@@ -22,8 +22,6 @@ public class FSMSystem
     public void Update()
     {
         state.OnUpdateState();
-        
-        
     }
 
     public void ChangeState(StateID id)

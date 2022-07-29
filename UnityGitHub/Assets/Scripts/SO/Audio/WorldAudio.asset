@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18fc466c6e623b43a097bbc6d188221, type: 3}
   m_Name: WorldAudio
   m_EditorClassIdentifier: 
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 848739acdaf728b45a57a87160f9021e, type: 3}
+  - {fileID: 8300000, guid: 72ef6eda0caaa744a819f1c0bcfce397, type: 3}
+  - {fileID: 8300000, guid: 0d3b647e3c636ab40a6d9b48d8ffab35, type: 3}
